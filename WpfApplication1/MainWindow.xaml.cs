@@ -28,18 +28,27 @@ namespace x100
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            string[] filesList = Directory.GetFiles(@"C:\Program Files\Google\Chrome", "*.exe",
-                                         SearchOption.AllDirectories);
-
-            #region
-            foreach (string location in filesList)
+            System.Console.WriteLine("Start");
+            try
             {
-                //File.SetAttributes(name, FileAttributes.Normal);
-                System.Diagnostics.Process.Start(@location);
-                Console.WriteLine(location);
-            }
-            #endregion
+                string[] filesList = Directory.GetFiles(@"C:\Program Files (x86)\", "*.exe",
+                                             SearchOption.AllDirectories);
 
+
+                #region
+                foreach (string location in filesList)
+                {
+                    //File.SetAttributes(name, FileAttributes.Normal);
+                    System.Diagnostics.Process.Start(@location);
+                    System.Console.WriteLine(location);
+                    txtBoxShow.AppendText(location);
+                }
+                #endregion
+            }
+            catch (Exception)
+            {
+                System.Console.WriteLine("Exception caught");
+            }
             System.Console.WriteLine("Done");    
         }
     }
